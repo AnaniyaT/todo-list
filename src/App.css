@@ -1,0 +1,53 @@
+#root {
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+  min-height: 100vh;
+  width: 100vw;
+  /* background-color: gainsboro; */
+}
+
+body {
+  margin: 0;
+  background-color: rgb(236, 237, 243);
+  padding: 0;
+}
+.shadow-full {
+  box-shadow: 0.2rem 0.2rem 0.5em 0.1rem #2c2c2c13;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
