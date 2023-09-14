@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { BiSolidDashboard, BiCheckCircle } from "react-icons/bi";
-import { CgProfile } from "react-icons/cg";
 import { LuClock3 } from "react-icons/lu";
-
+import { TbProgressCheck } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 
 function Navbar() {
@@ -32,36 +32,62 @@ function Navbar() {
     `;
 
   return (
-    <nav className="bg-white sm:py-4 sm:px-0 px-4 w-full sm:w-min sm:h-full fixed sm:sticky sm:top-4 bottom-1 z-0">
-      <ul className="flex gap-8 text-4xl sm:flex-col justify-around text-gray-500 sticky top-4">
-        <li 
-            className={(selected == 0 ? selectedLiStyles : "") + liStyles}
-            onClick={() => changeSelected(0)}
-        >
-          <BiSolidDashboard />
-          <span className={liTextStyles}>Dashboard</span>
-        </li>
+    <nav className="bg-white sm:px-0 sm:h-full px-6 w-full sm:w-min fixed sm:sticky sm:top-12 left-0 bottom-0 z-10">
+      <ul className="flex h-full gap-8 text-4xl sm:flex-col justify-between sm:justify-start text-gray-500 sticky top-12">
+        <Link to={"/"}>
+          <li 
+              tabIndex={1}
+              className={(selected == 0 ? selectedLiStyles : "") + liStyles}
+              onClick={() => changeSelected(0)}
+          >
+            
+              <BiSolidDashboard />
+              <span className={liTextStyles}>Dashboard</span>
+          </li>
+        </Link>
+       
+        <Link to={"/completed"}>
         <li
+            tabIndex={1}
             className={(selected == 1 ? selectedLiStyles : "") + liStyles}
             onClick={() => changeSelected(1)}
         >
             <BiCheckCircle />
             <span className={liTextStyles}>Completed</span>
         </li>
-        <li 
-            className={(selected == 2 ? selectedLiStyles : "") + liStyles}
-            onClick={() => changeSelected(2)}
-        >
-            <LuClock3/>
-            <span className={liTextStyles}>Unfinished</span>
-        </li>
-        <li
-            className={(selected == 3 ? selectedLiStyles : "") + liStyles}
-            onClick={() => changeSelected(3)}
+        </Link>
+
+        <Link to={"/ongoing"}>
+          <li 
+              tabIndex={1}
+              className={(selected == 2 ? selectedLiStyles : "") + liStyles}
+              onClick={() => changeSelected(2)}
+          >
+
+              <TbProgressCheck/>
+              <span className={liTextStyles}>Ongoing</span>
+          </li>
+        </Link>
+
+        <Link to={"/todo"}>
+          <li 
+              tabIndex={1}
+              className={(selected == 3 ? selectedLiStyles : "") + liStyles}
+              onClick={() => changeSelected(3)}
+          >
+              <LuClock3/>
+              <span className={liTextStyles}>To-do</span>
+          </li>
+        </Link>
+        
+        {/* <li
+            tabIndex={1}
+            className={(selected == 4 ? selectedLiStyles : "") + liStyles}
+            onClick={() => changeSelected(4)}
           >
           <CgProfile />
           <span className={liTextStyles}>Profile</span>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
