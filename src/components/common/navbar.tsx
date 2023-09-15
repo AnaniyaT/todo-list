@@ -2,11 +2,24 @@ import { useState } from "react";
 import { BiSolidDashboard, BiCheckCircle } from "react-icons/bi";
 import { LuClock3 } from "react-icons/lu";
 import { TbProgressCheck } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 
 function Navbar() {
     const [selected, setSelected] = useState<number>(0);
+
+    const indices : Record<string, number> = {
+        "/" : 0,
+        "/completed" : 1,
+        "/ongoing" : 2,
+        "/todo" : 3,
+    }
+
+    const location = useLocation();
+    const index = indices[location.pathname];
+    if (index != undefined && index != selected) {
+        setSelected(index);
+    }
 
     function changeSelected(index: number) {
         setSelected(index);
@@ -17,7 +30,7 @@ function Navbar() {
         hover:text-blue-500 
         sm:px-8 lg:pr-10 px-2 py-4 sm:py-2
         flex gap-5 items-center
-        lg:w-60
+        lg:w-64
         border-blue-400
     `;
 
