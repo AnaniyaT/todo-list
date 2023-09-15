@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DropDown from "../components/common/dropDown";
 import { MdClose } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { closeTaskModal } from "../features/createTaskModal/taskModalSlice";
-import { addTask } from "../features/tasks/taskSlice";
+import { addTask, updateTask } from "../features/tasks/taskSlice";
 
 // interface CreateTaskDialogProps {
 //     open?: boolean;
@@ -16,6 +16,18 @@ function CreateTaskDialog() {
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const id = useAppSelector((state) => state.task.idCount);
+    const currentTask = useAppSelector((state) => state.taskModal.currentTask);
+    const isEdit = currentTask !== null;
+
+    useEffect(() => {
+        
+        if (isEdit) {
+        setTitle(currentTask.title);
+        setDescription(currentTask.description);
+        setCategory(currentTask.category);
+    }
+    }, [currentTask])
+    
 
     function num(bool: boolean) : number {
         return bool ? 1 : 0;
@@ -52,16 +64,25 @@ function CreateTaskDialog() {
             deadline: new Date()
         };
 
-        dispatch(addTask(task));
+        if (isEdit) {
+            task.id = currentTask.id;
+            task.createdAt = currentTask.createdAt;
+            task.status = currentTask.status;
+            console.log("updatetask called")
+            dispatch(updateTask(task));
+        } else {
+            dispatch(addTask(task));
+        }
+        
         handleClose();
     }
 
     return (
         <div 
             className={`
-                p-12 mx-auto  bg-white border rounded-3xl z-20 position fixed
+                p-12 bg-white border rounded-3xl z-20 position fixed
                 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                px-12 transition-all duration-200 shadow-full-lg
+                px-8 sm:px-12 transition-all duration-200 shadow-full-lg
         ` + styles[num(isOpen)]}>
             {/* close button */}
             <div 
@@ -71,7 +92,7 @@ function CreateTaskDialog() {
                 <MdClose></MdClose>
             </div>
 
-            <h1 className="text-xl text-gray-600 font-semibold">Create a new Task</h1>
+            <h1 className="text-xl text-gray-600 font-semibold">{ isEdit ? "Edit Task" : "Create Task"}</h1>
             <div className="flex flex-col sm:flex-row gap-4 mt-8 sm:mb-2 mb-10 text-gray-500">
                 <div className="flex flex-col gap-4">
                     <input className="
@@ -86,7 +107,7 @@ function CreateTaskDialog() {
 
                     <DropDown
                     className="rounded-full w-[15rem] z-20"
-                    values={["Work", "School", "Personal"]} onChange={(value) => {setCategory(value)}}></DropDown>
+                    values={["Work", "School", "Personal"]} defaultValue="Personal" onChange={(value) => {setCategory(value)}}></DropDown>
                     <div className="flex z-0 justify-between gap-4 absolute sm:static bottom-0 left-1/2 sm:translate-x-0 -translate-x-1/2 mb-8">
                         <button onClick={handlesubmit} className="bg-blue-300 rounded-full z-0 w-full">Save</button>
                         <button onClick={handleClose} className="bg-gray-200 rounded-full w-full">Cancel</button>
