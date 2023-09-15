@@ -23,7 +23,7 @@ function DashboardCard( props: DashboardCardProps ) {
     return (
         <div 
             className={backgroundColors[props.color ?? "default"] + `rounded-lg shadow-md flex flex-col justify-center 
-            items-center sm:px-10 px-4 py-10 relative hover:scale-105 transition-all`}
+            items-center sm:px-10 px-4 py-6 sm:py-10 relative hover:scale-105 transition-all`}
         >
             <h1 className={textColors[props.color ?? "default "] + " text-5xl font-semibold z-10"}>{props.value}</h1>
             <h2 className="text-base pt-2 text-gray-500 whitespace-nowrap font-semibold z-10">{props.title}</h2>

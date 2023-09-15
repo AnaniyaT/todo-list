@@ -10,7 +10,7 @@ function Dashboard() {
     const total : number = tasks.length;
 
     return (
-        <div className="bg-white text-gray-600 sm:py-8 px-4 sm:px-8 h-full w-full">
+        <div className="bg-white overflow-x-hidden appear-animation text-gray-600 sm:py-8 px-4 sm:px-8 h-full w-full">
             <h1 className="text-left text-2xl font-semibold">Dashboard</h1>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-8">
                 <DashboardCard title="Total Tasks" value={total} color="blue"></DashboardCard>
@@ -20,10 +20,10 @@ function Dashboard() {
             <h2 className="text-xl mt-8 text-left font-bold">Tasks</h2>
             <div className="py-8 mb-20 relative">
                 {
-                    tasks.length >0 ? tasks.map((task) => {
-                        return <TaskListItem task={task}></TaskListItem>
+                    tasks.length >0 ? tasks.map((task, index) => {
+                        return <TaskListItem key={index} task={task}></TaskListItem>
                     })
-                    : <div className="absolute flex gap-6 items-center text-2xl top-[3.5rem] sm:top-[7rem] left-1/2 -translate-x-[50%] text-gray-400">
+                    : <div className="absolute flex gap-2 items-center text-2xl top-[3.5rem] sm:top-[7rem] left-1/2 -translate-x-[50%] text-gray-400">
                         <BiSad className="inline-block"></BiSad>
                         No tasks
                         </div>

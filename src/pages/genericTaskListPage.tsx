@@ -21,8 +21,8 @@ function GenericTaskListPage(props: GenericTaskListPageProps) {
     });
     
     return (
-        <div className="bg-white pb-12 sm:py-8 text-gray-600  px-4 sm:px-8 h-full w-full">
-            <div className="flex flex-col flex-wrap sm:flex-row justify-between gap-4 items-center">
+        <div className="bg-white appear-animation pb-12 sm:py-8 text-gray-600 overflow-x-hidden  px-4 sm:px-8 h-full w-full">
+            <div className="flex flex-col flex-wrap sm:flex-row justify-between gap-6 items-center">
                 <h1 className="sm:text-left text-2xl font-semibold">{props.title}</h1>
                 <div className="flex gap-2">
                     <DropDown className="z-10 rounded-full w-[10rem]" values={["All", "School", "Work", "Personal"]} onChange={(value) => {setCategory(value)}} placeholder="Category"></DropDown>
@@ -34,11 +34,11 @@ function GenericTaskListPage(props: GenericTaskListPageProps) {
                 {
                     filteredTasks.length > 0 ? filteredTasks.map((task, index) => {
                         return <div className="z-10" key={index} style={{}}>
-                            <TaskListItem task={task}></TaskListItem>
+                            <TaskListItem task={task} key={index}></TaskListItem>
                         </div>
                         
                     })
-                    : <div className="absolute flex gap-6 items-center text-2xl top-1/2 left-1/2 -translate-x-[50%] sm:-translate-x-[37%] text-gray-400">
+                    : <div className="flex gap-2 justify-center h-[50vh] items-center text-2xl text-gray-400">
                         <BiSad className="inline-block"></BiSad>
                         No tasks
                     </div>
