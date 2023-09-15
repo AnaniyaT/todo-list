@@ -29,9 +29,9 @@ function App() {
           <Navbar></Navbar>
           <Routes>
             <Route path='/' element={<Dashboard/>}/>
-            <Route path='/completed' element={<GenericTaskListPage title='Completed' tasks={completedTasks} />}/>
-            <Route path='/ongoing' element={<GenericTaskListPage title='Ongoing' tasks={ongoingTasks} />}/>
-            <Route path='/todo' element={<GenericTaskListPage title='Todo' tasks={todoTasks} />}/>
+            <Route path='/completed' element={<GenericTaskListPage key={1} title='Completed' tasks={completedTasks} />}/>
+            <Route path='/ongoing' element={<GenericTaskListPage key={2} title='Ongoing' tasks={ongoingTasks} />}/>
+            <Route path='/todo' element={<GenericTaskListPage key={3} title='Todo' tasks={todoTasks} />}/>
           </Routes>
           <CreateTaskDialog/>
           <AddTaskButton></AddTaskButton>
