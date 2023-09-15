@@ -8,10 +8,11 @@
   line-height: 1.5;
   font-weight: 400;
 
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: white;
+
+  scrollbar-gutter: stable;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,7 +21,6 @@
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
 }
-
 
 body {
   margin: 0;
@@ -31,8 +31,6 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-
-
 
 button {
   padding: 0.6em 1.2em;
@@ -48,16 +46,16 @@ button:active {
   transform: scale(0.95);
 }
 
-::-webkit-scrollbar{
-  width: 15px;
+*::-webkit-scrollbar{
+  width: 10px;
   border-radius: 20px;
 }
 
-::-webkit-scrollbar-track{
+*::-webkit-scrollbar-track{
   background: white;
 }
 
-::-webkit-scrollbar-thumb{
+*::-webkit-scrollbar-thumb{
   background: #ccc;
   border-radius: 20px;
 }

@@ -4,6 +4,7 @@
   text-align: center;
   min-height: 100vh;
   width: 100vw;
+
   /* background-color: gainsboro; */
 }
 
@@ -19,6 +20,10 @@ body {
 
 .shadow-full-lg {
   box-shadow: 0.2rem 0.2rem 0.5em 0.2rem #2c2c2c2c;
+}
+
+.appear-animation {
+  animation: appear 400ms ease-in-out;
 }
 
 .logo {
@@ -40,6 +45,15 @@ body {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
